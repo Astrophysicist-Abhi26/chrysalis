@@ -89,7 +89,7 @@ def parse_euraxess_card(card, a, src, base="https://euraxess.ec.europa.eu"):
 
 # EURAXESS can be slow, or ask automated readers to wait. One EURAXESS source stops paging after
 # this many seconds and keeps what it has, so a slow day cannot hold up the whole run.
-EURAXESS_BUDGET_S = 720
+EURAXESS_BUDGET_S = 480
 
 
 def fetch_euraxess(src):
