@@ -35,137 +35,127 @@ def daisy(x, y, s, c):
 
 dots = "".join(f'<circle cx="{(i % 4) * 14 + (7 if (i // 4) % 2 else 0)}" cy="{(i // 4) * 14}" r="1.7" fill="#FFFFFF" opacity=".9"/>' for i in range(16))
 
-avatar = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 440" role="img" aria-labelledby="t d">
+AVATAR = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 440" role="img" aria-labelledby="t d">
 <title id="t">Megha Pashupati</title>
-<desc id="d">Illustrated 3D-style avatar of Megha: oval face with a big happy smile, black hair side-parted and tied back, a sunflower-yellow kurta with white dots, holding a cell-culture flask of pink medium from which tiny extracellular vesicles drift, with small butterflies in a sunny garden of muscle cells.</desc>
+<desc id="d">Illustrated portrait of Megha: an oval face with a calm closed-lip smile, almond brown eyes, arched brows, long straight black hair parted slightly to one side and falling past her shoulders, tucked behind one ear with a small stud earring, wearing a black-and-white houndstooth top, in a sunlit garden circle with tiny butterflies.</desc>
 <style>
-.bf{{animation:fl 7s ease-in-out infinite}} @keyframes fl{{0%,100%{{transform:translate(0,0)}}50%{{transform:translate(10px,-12px)}}}}
-.wl,.wr{{transform-box:fill-box;animation:flap .32s ease-in-out infinite alternate}} .wl{{transform-origin:right center}} .wr{{transform-origin:left center}}
-@keyframes flap{{to{{transform:scaleX(.35)}}}}
-.ev{{animation:rise 5.5s ease-in-out infinite}} @keyframes rise{{0%{{transform:translate(0,0);opacity:0}}15%{{opacity:1}}100%{{transform:translate(-14px,-70px);opacity:0}}}}
-.head{{transform-origin:222px 290px;animation:tilt 6s ease-in-out infinite}} @keyframes tilt{{0%,100%{{transform:rotate(0)}}50%{{transform:rotate(2deg)}}}}
-.flask{{transform-origin:252px 400px;animation:sway 4s ease-in-out infinite}} @keyframes sway{{0%,100%{{transform:rotate(0)}}50%{{transform:rotate(-3deg)}}}}
-.ring{{animation:hue 12s linear infinite}} @keyframes hue{{to{{filter:hue-rotate(360deg)}}}}
-.sp{{animation:tw 3s ease-in-out infinite}} @keyframes tw{{0%,100%{{opacity:.2}}50%{{opacity:1}}}}
-@media (prefers-reduced-motion: reduce){{*{{animation:none!important}}}}
+.bf{animation:fl 7s ease-in-out infinite} @keyframes fl{0%,100%{transform:translate(0,0)}50%{transform:translate(10px,-12px)}}
+.wl,.wr{transform-box:fill-box;animation:flap .32s ease-in-out infinite alternate} .wl{transform-origin:right center} .wr{transform-origin:left center}
+@keyframes flap{to{transform:scaleX(.35)}}
+.head{transform-origin:220px 330px;animation:tilt 7s ease-in-out infinite} @keyframes tilt{0%,100%{transform:rotate(0)}50%{transform:rotate(1.6deg)}}
+.eyes{transform-box:fill-box;transform-origin:center;animation:blink 6s infinite} @keyframes blink{0%,94%,100%{transform:scaleY(1)}96.5%{transform:scaleY(.1)}}
+.bk{animation:tw 4s ease-in-out infinite} @keyframes tw{0%,100%{opacity:.25}50%{opacity:.75}}
+.ring{animation:hue 14s linear infinite} @keyframes hue{to{filter:hue-rotate(360deg)}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important}}
 </style>
 <defs>
-  <radialGradient id="sky" cx="50%" cy="38%" r="65%"><stop offset="0" stop-color="#FFFBE6"/><stop offset=".55" stop-color="#D6F7E3"/><stop offset="1" stop-color="#7FD3A8"/></radialGradient>
-  <radialGradient id="sun" cx="78%" cy="18%" r="35%"><stop offset="0" stop-color="#FFE27A" stop-opacity=".9"/><stop offset="1" stop-color="#FFE27A" stop-opacity="0"/></radialGradient>
+  <radialGradient id="sky" cx="45%" cy="35%" r="70%"><stop offset="0" stop-color="#FFF6D6"/><stop offset=".45" stop-color="#DCEFC0"/><stop offset="1" stop-color="#7FBF8A"/></radialGradient>
   <linearGradient id="rim" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFC83D"/><stop offset=".35" stop-color="#FF6FAE"/><stop offset=".7" stop-color="#9B7BFF"/><stop offset="1" stop-color="#3FD6A6"/></linearGradient>
-  <radialGradient id="face" cx="40%" cy="34%" r="72%"><stop offset="0" stop-color="{SKIN_HI}"/><stop offset=".45" stop-color="{SKIN}"/><stop offset=".78" stop-color="{SKIN_MID}"/><stop offset="1" stop-color="#AD775C"/></radialGradient>
-  <radialGradient id="ear" cx="40%" cy="40%" r="70%"><stop offset="0" stop-color="{SKIN}"/><stop offset="1" stop-color="{SKIN_SH}"/></radialGradient>
-  <linearGradient id="neck" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B27A5F"/><stop offset=".45" stop-color="{SKIN_MID}"/><stop offset="1" stop-color="{SKIN}"/></linearGradient>
-  <linearGradient id="hair" x1="0" y1="0" x2=".8" y2="1"><stop offset="0" stop-color="{HAIR_HI}"/><stop offset=".45" stop-color="#231A20"/><stop offset="1" stop-color="{HAIR}"/></linearGradient>
-  <linearGradient id="dress" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{DRESS_HI}"/><stop offset=".5" stop-color="{DRESS}"/><stop offset="1" stop-color="{DRESS_SH}"/></linearGradient>
-  <pattern id="dots" width="56" height="56" patternUnits="userSpaceOnUse">{dots}</pattern>
-  <radialGradient id="dshade" cx="50%" cy="20%" r="85%"><stop offset=".5" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#7A4A00" stop-opacity=".35"/></radialGradient>
-  <radialGradient id="iris" cx="45%" cy="35%" r="65%"><stop offset="0" stop-color="#7A4A2A"/><stop offset=".6" stop-color="#4A2A18"/><stop offset="1" stop-color="#24120A"/></radialGradient>
-  <linearGradient id="hand" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{SKIN_HI}"/><stop offset="1" stop-color="{SKIN_MID}"/></linearGradient>
-  <linearGradient id="medium" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF8FB8"/><stop offset="1" stop-color="#E0457B"/></linearGradient>
-  <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".85"/><stop offset="1" stop-color="#E6F1FF" stop-opacity=".55"/></linearGradient>
-  <filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#2D5B3F" flood-opacity=".35"/></filter>
-  <filter id="blur2" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="2.2"/></filter>
+  <radialGradient id="skin" cx="40%" cy="30%" r="80%"><stop offset="0" stop-color="#EDC6A5"/><stop offset=".45" stop-color="#DBAA87"/><stop offset=".8" stop-color="#C6906D"/><stop offset="1" stop-color="#A6714F"/></radialGradient>
+  <linearGradient id="neck" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A9765A"/><stop offset=".5" stop-color="#CF9E7D"/><stop offset="1" stop-color="#DDB08F"/></linearGradient>
+  <linearGradient id="hair" x1="0" y1="0" x2=".5" y2="1"><stop offset="0" stop-color="#3B3236"/><stop offset=".35" stop-color="#1C1619"/><stop offset="1" stop-color="#0C090B"/></linearGradient>
+  <linearGradient id="hairfront" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2E262A"/><stop offset=".5" stop-color="#17121500"/><stop offset="1" stop-color="#0B080A"/></linearGradient>
+  <radialGradient id="iris" cx="45%" cy="35%" r="65%"><stop offset="0" stop-color="#7A4C30"/><stop offset=".65" stop-color="#43261A"/><stop offset="1" stop-color="#1F110A"/></radialGradient>
+  <linearGradient id="lipT" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B66476"/><stop offset="1" stop-color="#A4586A"/></linearGradient>
+  <linearGradient id="lipB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D88E9C"/><stop offset="1" stop-color="#C27684"/></linearGradient>
+  <pattern id="hound" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(-6)">
+    <rect width="14" height="14" fill="#17161C"/>
+    <path d="M0 0H7L14 7V14L7 7H0Z" fill="#F3F0E8"/><path d="M0 7H3.5V10.5Z" fill="#F3F0E8"/><path d="M7 0V3.5H10.5Z" fill="#17161C"/>
+  </pattern>
+  <radialGradient id="topshade" cx="50%" cy="10%" r="95%"><stop offset=".45" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".45"/></radialGradient>
+  <clipPath id="eyeL"><path d="M177 203C183 195 200 194 207 202C201 207 186 208 177 203Z"/></clipPath>
+  <clipPath id="eyeR"><path d="M263 203C257 195 240 194 233 202C239 207 254 208 263 203Z"/></clipPath>
+  <filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#2D4B2F" flood-opacity=".35"/></filter>
+  <filter id="blur2" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2.4"/></filter>
+  <filter id="blur6" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6"/></filter>
   <filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5"/></filter>
   <clipPath id="disc"><circle cx="220" cy="220" r="200"/></clipPath>
 </defs>
 
-<!-- garden of cells -->
 <circle cx="220" cy="220" r="214" fill="none" stroke="url(#rim)" stroke-width="12" opacity=".7" filter="url(#glow)" class="ring"/>
 <circle cx="220" cy="220" r="206" fill="none" stroke="url(#rim)" stroke-width="6" class="ring"/>
 <circle cx="220" cy="220" r="200" fill="url(#sky)"/>
 <g clip-path="url(#disc)">
-  <circle cx="220" cy="220" r="200" fill="url(#sun)"/>
-  {myotube(92, 150, 120, -28, "#FFB3CC")}{myotube(352, 128, 110, 24, "#FFC2D6")}{myotube(70, 250, 96, 12, "#FFB3CC")}
-  <circle cx="358" cy="262" r="30" fill="#C9B8FF" opacity=".45"/><circle cx="364" cy="258" r="11" fill="#7B4FD6" opacity=".6"/>
-  {vesicle(336, 222, 7, "#9B7BFF", 0)}{vesicle(392, 300, 5, "#FF6FAE", 1.4)}{vesicle(60, 196, 6, "#3FD6A6", 2.2)}
-  <path d="M20 420C80 360 140 380 180 420M260 420C300 370 380 360 430 410" fill="#5DBB86" opacity=".55"/>
-  {daisy(64, 352, 1.1, "#FFC83D")}{daisy(384, 360, 0.9, "#FF6FAE")}{daisy(104, 392, 0.7, "#FFC83D")}
-  <!-- kurta: sunflower yellow with white dots -->
+  <!-- sunlit garden bokeh -->
+  %BOKEH%
+  <path d="M20 120C60 90 70 40 40 10M410 90C380 70 380 30 410 10" stroke="#5E9E62" stroke-width="10" fill="none" opacity=".35" stroke-linecap="round"/>
+  <!-- long hair, behind -->
+  <path d="M220 80C152 82 112 126 108 192C104 258 100 330 88 440H352C340 330 336 258 332 192C328 126 290 82 220 80Z" fill="url(#hair)"/>
+  <!-- neck and shoulders in a houndstooth top -->
+  <path d="M194 276C195 298 193 314 188 330H252C247 314 245 298 246 276Z" fill="url(#neck)"/>
+  <ellipse cx="220" cy="298" rx="30" ry="10" fill="#8F5E44" opacity=".45" filter="url(#blur2)"/>
   <g filter="url(#soft)">
-    <path d="M284 214C300 228 304 252 296 272C290 258 284 244 274 232Z" fill="url(#hair)"/>
-    <path d="M96 440C98 368 128 318 176 300L204 284L222 302L240 284L268 300C316 318 346 368 348 440Z" fill="url(#dress)"/>
-    <path d="M96 440C98 368 128 318 176 300L204 284L222 302L240 284L268 300C316 318 346 368 348 440Z" fill="url(#dots)"/>
-    <path d="M96 440C98 368 128 318 176 300L204 284L222 302L240 284L268 300C316 318 346 368 348 440Z" fill="url(#dshade)"/>
-    <path d="M204 282L180 298L194 324L219 303Z" fill="url(#dress)" stroke="#C88A00" stroke-width="1.2" stroke-linejoin="round"/>
-    <path d="M240 282L264 298L250 324L225 303Z" fill="url(#dress)" stroke="#C88A00" stroke-width="1.2" stroke-linejoin="round"/>
-    <path d="M222 303V440" stroke="#C88A00" stroke-width="2"/>
-    <circle cx="222" cy="330" r="2.6" fill="#FFF4C2" stroke="#B07800"/><circle cx="222" cy="362" r="2.6" fill="#FFF4C2" stroke="#B07800"/>
+    <path d="M70 440C74 392 104 362 150 350C170 345 182 336 190 326C202 338 238 338 250 326C258 336 270 345 290 350C336 362 366 392 370 440Z" fill="url(#hound)"/>
+    <path d="M70 440C74 392 104 362 150 350C170 345 182 336 190 326C202 338 238 338 250 326C258 336 270 345 290 350C336 362 366 392 370 440Z" fill="url(#topshade)"/>
+    <path d="M190 326C202 339 238 339 250 326" fill="none" stroke="#0E0D12" stroke-width="3.5" stroke-linecap="round"/>
   </g>
 </g>
 
-<!-- neck and head: oval face, big smile, side-swept hair tied back -->
-<path d="M204 258L240 258L242 304L202 304Z" fill="url(#neck)"/>
-<g class="head" filter="url(#soft)">
-  <path d="M136 204C126 116 170 54 224 54C280 54 320 116 308 204C302 184 296 168 288 158L158 158C148 170 140 186 136 204Z" fill="url(#hair)"/>
-  <ellipse cx="151" cy="200" rx="9" ry="13" fill="url(#ear)"/><ellipse cx="153" cy="201" rx="4" ry="7.5" fill="{SKIN_SH}" opacity=".55"/>
-  <ellipse cx="293" cy="200" rx="9" ry="13" fill="url(#ear)"/><ellipse cx="291" cy="201" rx="4" ry="7.5" fill="{SKIN_SH}" opacity=".55"/>
-  <path d="M151 184C151 130 184 102 222 102C260 102 293 130 293 184C293 236 264 266 222 270C180 266 151 236 151 184Z" fill="url(#face)"/>
-  <path d="M160 214C166 246 188 266 222 272" fill="none" stroke="#FFF1E6" stroke-width="2.6" opacity=".3" stroke-linecap="round"/>
-  <path d="M284 210C280 242 260 262 232 270" fill="none" stroke="#9E6A52" stroke-width="5" opacity=".18" stroke-linecap="round" filter="url(#blur2)"/>
-  <ellipse cx="200" cy="140" rx="22" ry="9" fill="#FFFFFF" opacity=".12"/>
-  <!-- hair: parting left of centre; fringe sweeps across to her left temple -->
-  <path d="M194 60C164 68 150 100 149 140C148 160 151 178 154 194C158 170 164 150 174 138C182 130 190 126 197 124C192 106 191 80 194 60Z" fill="url(#hair)"/>
-  <path d="M195 60C230 56 272 74 290 110C298 128 298 154 294 182C288 160 276 146 260 140C246 134 232 128 222 126C212 124 204 125 197 124C192 104 192 80 195 60Z" fill="url(#hair)"/>
-  <path d="M197 124C210 121 232 124 252 134C266 141 280 152 290 170C276 150 260 140 244 134C228 128 212 126 197 124Z" fill="#2A1F25" opacity=".55"/>
-  <path d="M195 62C193 84 194 106 197 123" stroke="#7E6A72" stroke-width="1.6" opacity=".8" fill="none"/>
-  <path d="M206 70C236 70 266 84 282 110M204 86C230 86 258 100 274 122M206 104C228 106 250 116 266 132" stroke="#5D4A52" stroke-width="1.3" opacity=".7" fill="none"/>
-  <path d="M208 62C232 60 258 68 276 86" stroke="#FFFFFF" stroke-width="4" opacity=".16" fill="none" stroke-linecap="round"/>
-  <path d="M156 178C150 188 148 200 151 212M291 176C297 186 298 198 295 210" stroke="{HAIR}" stroke-width="1.3" fill="none" opacity=".8"/>
-  <!-- rosy cheeks, soft brows, big sparkly eyes -->
-  <ellipse cx="180" cy="223" rx="19" ry="11" fill="#FF8FA3" opacity=".42" filter="url(#blur2)"/>
-  <ellipse cx="264" cy="223" rx="19" ry="11" fill="#FF8FA3" opacity=".42" filter="url(#blur2)"/>
-  <ellipse cx="178" cy="214" rx="10" ry="5" fill="#FFFFFF" opacity=".2"/><ellipse cx="266" cy="214" rx="9" ry="4.5" fill="#FFFFFF" opacity=".14"/>
-  <path d="M175 161Q191 152 208 157" stroke="#2A1C1E" stroke-width="3.8" fill="none" stroke-linecap="round"/>
-  <path d="M236 157Q253 152 269 161" stroke="#2A1C1E" stroke-width="3.8" fill="none" stroke-linecap="round"/>
+<g clip-path="url(#disc)"><g class="head" filter="url(#soft)">
+  <!-- ear (her left) with a small stud -->
+  <path d="M289 208C298 203 305 212 304 225C303 238 298 247 291 249Z" fill="#CC9673"/>
+  <path d="M293 216C298 216 299 226 296 234" fill="none" stroke="#A9725A" stroke-width="1.6" opacity=".7"/>
+  <circle cx="295.5" cy="246.5" r="2.8" fill="#F4EBDA"/><circle cx="294.6" cy="245.6" r="1" fill="#FFFFFF"/>
+  <!-- face -->
+  <path d="M150 198C148 150 180 116 220 116C260 116 292 150 290 198C289 238 276 268 256 285C245 294 233 299 220 299C207 299 195 294 184 285C164 268 151 238 150 198Z" fill="url(#skin)"/>
+  <path d="M282 214C278 250 262 276 238 292" fill="none" stroke="#9C6A50" stroke-width="10" opacity=".22" stroke-linecap="round" filter="url(#blur2)"/>
+  <path d="M160 220C164 252 180 276 202 290" fill="none" stroke="#FFE9D8" stroke-width="6" opacity=".2" stroke-linecap="round" filter="url(#blur2)"/>
+  <ellipse cx="208" cy="146" rx="28" ry="11" fill="#FFFFFF" opacity=".13" filter="url(#blur2)"/>
+  <ellipse cx="178" cy="234" rx="18" ry="10" fill="#E8897E" opacity=".24" filter="url(#blur2)"/>
+  <ellipse cx="262" cy="234" rx="18" ry="10" fill="#E8897E" opacity=".24" filter="url(#blur2)"/>
+  <!-- brows -->
+  <path d="M168 187C176 178.5 194 176.5 209 179.5C209 183.5 207 185 204 185C194 182 182 183 170 190Z" fill="#20130F"/>
+  <path d="M272 187C264 178.5 246 176.5 231 179.5C231 183.5 233 185 236 185C246 182 258 183 270 190Z" fill="#20130F"/>
+  <!-- almond eyes with a soft upper lid -->
   <g class="eyes">
-    <path d="M180 185Q194 169 208 185Q194 196 180 185Z" fill="#FFFFFF"/><path d="M236 185Q250 169 264 185Q250 196 236 185Z" fill="#FFFFFF"/>
-    <circle cx="194.5" cy="184.5" r="7.4" fill="url(#iris)"/><circle cx="249.5" cy="184.5" r="7.4" fill="url(#iris)"/>
-    <circle cx="194.5" cy="184.5" r="3.6" fill="#120806"/><circle cx="249.5" cy="184.5" r="3.6" fill="#120806"/>
-    <circle cx="197.6" cy="181" r="2.5" fill="#FFFFFF"/><circle cx="252.6" cy="181" r="2.5" fill="#FFFFFF"/>
-    <circle cx="192" cy="188" r="1.1" fill="#FFFFFF" opacity=".9"/><circle cx="247" cy="188" r="1.1" fill="#FFFFFF" opacity=".9"/>
-    <path d="M178.5 184Q194 166 209.5 183M234.5 183Q250 166 265.5 184" stroke="#160C0C" stroke-width="3.2" fill="none" stroke-linecap="round"/>
-    <path d="M181 181L175 177M184 177L180 172M263 181L269 177M260 177L264 172" stroke="#160C0C" stroke-width="2" stroke-linecap="round"/>
+    <path d="M177 203C183 195 200 194 207 202C201 207 186 208 177 203Z" fill="#FAF4EF"/>
+    <path d="M263 203C257 195 240 194 233 202C239 207 254 208 263 203Z" fill="#FAF4EF"/>
+    <g clip-path="url(#eyeL)"><circle cx="192.5" cy="202.5" r="6.3" fill="url(#iris)"/><circle cx="192.5" cy="202.5" r="2.9" fill="#0E0705"/>
+      <path d="M175 197.5C184 195.5 200 195 210 199V193H175Z" fill="#B98364" opacity=".5"/></g>
+    <g clip-path="url(#eyeR)"><circle cx="247.5" cy="202.5" r="6.3" fill="url(#iris)"/><circle cx="247.5" cy="202.5" r="2.9" fill="#0E0705"/>
+      <path d="M265 197.5C256 195.5 240 195 230 199V193H265Z" fill="#B98364" opacity=".5"/></g>
+    <circle cx="194.6" cy="200.6" r="1.8" fill="#FFFFFF" opacity=".95"/><circle cx="249.6" cy="200.6" r="1.8" fill="#FFFFFF" opacity=".95"/>
+    <path d="M175.5 203C182 193.5 201 192.5 208.5 201.5" fill="none" stroke="#170D0A" stroke-width="2.6" stroke-linecap="round"/>
+    <path d="M264.5 203C258 193.5 239 192.5 231.5 201.5" fill="none" stroke="#170D0A" stroke-width="2.6" stroke-linecap="round"/>
+    <path d="M180 206C187 209 199 208.5 205 204.5M260 206C253 209 241 208.5 235 204.5" fill="none" stroke="#9E6B54" stroke-width="1.2" opacity=".6" stroke-linecap="round"/>
+    <path d="M180 195C187 189.5 199 189 206 193M260 195C253 189.5 241 189 234 193" fill="none" stroke="#A9765C" stroke-width="1.3" opacity=".45" stroke-linecap="round"/>
   </g>
-  <!-- small cute nose -->
-  <path d="M218 214Q222 219 227 214" stroke="#B57A60" stroke-width="2.1" fill="none" stroke-linecap="round"/>
-  <ellipse cx="223" cy="208" rx="3.5" ry="2.5" fill="#FFFFFF" opacity=".28"/>
-  <!-- sweet smile -->
-  <path d="M203 237Q222 244 241 237Q237 254 222 256Q207 254 203 237Z" fill="#8A2A3A"/>
-  <path d="M206 238Q222 244 238 238L236 243.5Q222 248 208 243.5Z" fill="#FFFFFF"/>
-  <path d="M211 250Q222 245 233 250Q228 255 222 255Q216 255 211 250Z" fill="#F28C9A"/>
-  <path d="M203 237Q222 244 241 237Q237 254 222 256Q207 254 203 237Z" fill="none" stroke="#C85C6C" stroke-width="2" stroke-linejoin="round"/>
-  <path d="M199 235Q201 239 204 239.5M245 235Q243 239 240 239.5" stroke="#C07068" stroke-width="1.5" fill="none" opacity=".7" stroke-linecap="round"/>
-  <!-- a tiny butterfly hair clip -->
-  <g transform="translate(262 108) rotate(24) scale(.95)">
-    <path d="M0 0C-6-12-16-12-15-4C-14 2-6 3 0 0Z" fill="#FF6FAE"/><path d="M0 1C-5 8-11 10-11 5C-11 2-5 1 0 1Z" fill="#FFC83D"/>
-    <path d="M0 0C6-12 16-12 15-4C14 2 6 3 0 0Z" fill="#FF6FAE"/><path d="M0 1C5 8 11 10 11 5C11 2 5 1 0 1Z" fill="#FFC83D"/>
-    <rect x="-1.2" y="-6" width="2.4" height="12" rx="1.2" fill="#3A2A2E"/>
-    <circle cx="-8" cy="-5" r="1.6" fill="#FFFFFF" opacity=".8"/><circle cx="8" cy="-5" r="1.6" fill="#FFFFFF" opacity=".8"/>
-  </g>
-</g>
+  <!-- straight nose -->
+  <path d="M226 204C227 218 228 230 232 238" fill="none" stroke="#A06C52" stroke-width="3.4" opacity=".28" stroke-linecap="round" filter="url(#blur2)"/>
+  <ellipse cx="220" cy="238" rx="5" ry="3.6" fill="#FFFFFF" opacity=".2"/>
+  <path d="M207 244C212 250 217.5 251 220.5 250C223.5 251 229 250 234 244" fill="none" stroke="#956049" stroke-width="1.9" opacity=".75" stroke-linecap="round"/>
+  <ellipse cx="212" cy="245.5" rx="3.4" ry="1.8" fill="#7E4E3C" opacity=".35"/><ellipse cx="229" cy="245.5" rx="3.4" ry="1.8" fill="#7E4E3C" opacity=".35"/>
+  <!-- calm closed-lip smile -->
+  <path d="M196 266C204 261.5 212 258 218.5 260C219.8 260.8 220.5 261 221 261C221.5 261 222.2 260.8 223.5 260C230 258 238 261.5 246 266C235 269 207 269 196 266Z" fill="url(#lipT)"/>
+  <path d="M198 267C207 280 235 280 244 267C235 270.5 207 270.5 198 267Z" fill="url(#lipB)"/>
+  <path d="M196 266Q221 271.5 246 266" fill="none" stroke="#7E3646" stroke-width="1.7" stroke-linecap="round"/>
+  <ellipse cx="221" cy="274.5" rx="8" ry="1.8" fill="#FFFFFF" opacity=".3"/>
+  <path d="M193 263.5Q195 266.5 197.5 266.8M249 263.5Q247 266.5 244.5 266.8" fill="none" stroke="#A86A5E" stroke-width="1.4" opacity=".6" stroke-linecap="round"/>
+  <!-- front hair: parted slightly to her right, falling straight down past the shoulders -->
+  <path d="M210 86C174 88 140 112 129 156C118 202 118 258 122 312C126 362 132 404 136 440H176C170 404 166 360 164 318C162 284 158 252 157 224C156 190 162 160 176 138C188 122 200 112 210 104Z" fill="url(#hair)"/>
+  <path d="M210 86C250 82 288 100 302 138C308 156 308 178 303 204C298 184 292 168 284 156C272 136 250 122 226 116C218 114 213 110 210 104Z" fill="url(#hair)"/>
+  <path d="M210 86C209 93 209 99 210 106" fill="none" stroke="#6E5C62" stroke-width="1.6" opacity=".8"/>
+  <path d="M204 92C176 100 152 122 144 164C138 198 138 250 142 310C145 356 150 400 154 440M194 96C170 108 152 134 146 172M218 92C248 92 276 106 290 130M222 102C246 104 268 116 280 132" fill="none" stroke="#4C3E44" stroke-width="1.3" opacity=".7"/>
+  <path d="M216 90C244 88 272 98 288 118" fill="none" stroke="#FFFFFF" stroke-width="5" opacity=".13" stroke-linecap="round"/>
+  <path d="M190 98C170 108 154 130 146 160" fill="none" stroke="#FFFFFF" stroke-width="4" opacity=".1" stroke-linecap="round"/>
+  <path d="M302 204C308 240 312 284 318 334" fill="none" stroke="#0E0A0C" stroke-width="10" opacity=".9" stroke-linecap="round"/>
+</g></g>
 
-<!-- a culture flask of pink medium, shedding tiny vesicles -->
-<g class="flask" filter="url(#soft)">
-  <g transform="rotate(-14 252 384)">
-    <path d="M222 352H276L286 336H300V352V412H222Z" fill="url(#glass)" stroke="#8AA6C8" stroke-width="2" stroke-linejoin="round"/>
-    <path d="M224 376H298V410H224Z" fill="url(#medium)" opacity=".9"/>
-    <path d="M224 376Q260 370 298 376" stroke="#FFFFFF" stroke-width="1.5" opacity=".7" fill="none"/>
-    <rect x="296" y="328" width="16" height="14" rx="3" fill="#3D7BFF"/>
-    <circle cx="240" cy="392" r="2" fill="#FFFFFF" opacity=".8"/><circle cx="256" cy="398" r="1.6" fill="#FFFFFF" opacity=".8"/><circle cx="272" cy="388" r="1.8" fill="#FFFFFF" opacity=".8"/>
-    <path d="M228 356H262" stroke="#FFFFFF" stroke-width="2" opacity=".8"/>
-  </g>
-  <path d="M196 414C200 402 226 398 250 400C274 398 296 402 300 414C288 426 262 430 248 428C232 430 206 426 196 414Z" fill="url(#hand)"/>
-  <ellipse cx="204" cy="404" rx="7" ry="12" transform="rotate(-30 204 404)" fill="url(#hand)"/>
-  {vesicle(300, 318, 6, "#FF6FAE", 0.3)}{vesicle(318, 296, 4.5, "#9B7BFF", 1.8)}{vesicle(286, 300, 3.5, "#3FD6A6", 3.1)}
-</g>
+%BUTTERFLIES%
+</svg>"""
 
-{butterfly(84, 92, 1.3, "#FF6FAE", "#FFC83D", delay=0)}
-{butterfly(372, 196, 1.0, "#9B7BFF", "#3FD6A6", delay=1.5)}
-{butterfly(318, 338, 0.8, "#FFC83D", "#FF6FAE", delay=2.6)}
-<path class="sp" d="M120 300l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" fill="#FFFFFF"/>
-<path class="sp" style="animation-delay:1.2s" d="M346 92l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" fill="#FFFFFF"/>
-</svg>'''
+def _bokeh():
+    out = []
+    for i in range(16):
+        x, y, r = random.uniform(30, 410), random.uniform(30, 300), random.uniform(6, 22)
+        c = random.choice(["#FFFFFF", "#FFF2B0", "#E8FFD0", "#FFE0EE"])
+        out.append(f'<circle class="bk" style="animation-delay:{random.uniform(0, 4):.1f}s" cx="{x:.0f}" cy="{y:.0f}" r="{r:.0f}" fill="{c}" opacity=".5" filter="url(#blur6)"/>')
+    return "".join(out)
+
+avatar = (AVATAR.replace("%BOKEH%", _bokeh())
+          .replace("%BUTTERFLIES%", butterfly(76, 120, 1.25, "#FF6FAE", "#FFC83D", delay=0) +
+                   butterfly(372, 170, 1.0, "#9B7BFF", "#3FD6A6", delay=1.5) +
+                   butterfly(352, 330, 0.85, "#FFC83D", "#FF6FAE", delay=2.6)))
 open(os.path.join(OUT, "megha.svg"), "w").write(avatar)
 
 # ── app icon: a butterfly with vesicle wing-spots on a sunrise gradient ──────
