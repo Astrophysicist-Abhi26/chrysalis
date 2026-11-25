@@ -37,9 +37,11 @@ const reset = async () => { click(d.querySelector('#filters [data-act="reset"]')
   check(/Megha/.test(d.querySelector("#hello").textContent), "hero greets Megha");
   check(/Chrysalis found \d+ PhD positions? \(\d+ in Europe, \d+ in India\), \d+ project or JRF jobs?/.test(d.querySelector("#today").textContent), "hero summarises PhDs, projects, internships and companies");
   check(d.querySelectorAll("#bg svg g").length > 20 && Number(d.querySelector("#bg").dataset.motifs) > 10, "garden background drawn with cell motifs");
-  check(d.querySelector("#bg").dataset.mode === "butterflies" && d.querySelectorAll("#bg .fly").length > 0, "tiny butterflies fly in the light theme");
+  const fl = d.querySelector("#flyers");
+  check(fl && fl.style.position === "fixed" && fl.style.pointerEvents === "none", "flyers float over the whole page and let clicks through");
+  check(d.querySelector("#flyers").dataset.mode === "butterflies" && d.querySelectorAll("#flyers .bf").length === 9, "9 tiny butterflies wander the page in the light theme");
   d.documentElement.dataset.theme = "dark"; await tick();
-  check(d.querySelector("#bg").dataset.mode === "fireflies" && d.querySelectorAll("#bg .ff").length > 20, "fireflies glow in the dark theme");
+  check(d.querySelector("#flyers").dataset.mode === "fireflies" && d.querySelectorAll("#flyers .ff").length > 20 && !d.querySelector("#flyers .bf"), "fireflies replace them in the dark theme");
   d.documentElement.dataset.theme = "light"; await tick();
   const ageDisc = d.querySelector('#discs [data-preset="sen"]');
   check(!!ageDisc, "quick-search chips rendered");

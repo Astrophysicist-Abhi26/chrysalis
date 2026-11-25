@@ -60,6 +60,7 @@ avatar = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 440" role=
   <linearGradient id="dress" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{DRESS_HI}"/><stop offset=".5" stop-color="{DRESS}"/><stop offset="1" stop-color="{DRESS_SH}"/></linearGradient>
   <pattern id="dots" width="56" height="56" patternUnits="userSpaceOnUse">{dots}</pattern>
   <radialGradient id="dshade" cx="50%" cy="20%" r="85%"><stop offset=".5" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#7A4A00" stop-opacity=".35"/></radialGradient>
+  <radialGradient id="iris" cx="45%" cy="35%" r="65%"><stop offset="0" stop-color="#7A4A2A"/><stop offset=".6" stop-color="#4A2A18"/><stop offset="1" stop-color="#24120A"/></radialGradient>
   <linearGradient id="hand" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{SKIN_HI}"/><stop offset="1" stop-color="{SKIN_MID}"/></linearGradient>
   <linearGradient id="medium" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF8FB8"/><stop offset="1" stop-color="#E0457B"/></linearGradient>
   <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".85"/><stop offset="1" stop-color="#E6F1FF" stop-opacity=".55"/></linearGradient>
@@ -99,7 +100,7 @@ avatar = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 440" role=
   <path d="M136 204C126 116 170 54 224 54C280 54 320 116 308 204C302 184 296 168 288 158L158 158C148 170 140 186 136 204Z" fill="url(#hair)"/>
   <ellipse cx="151" cy="200" rx="9" ry="13" fill="url(#ear)"/><ellipse cx="153" cy="201" rx="4" ry="7.5" fill="{SKIN_SH}" opacity=".55"/>
   <ellipse cx="293" cy="200" rx="9" ry="13" fill="url(#ear)"/><ellipse cx="291" cy="201" rx="4" ry="7.5" fill="{SKIN_SH}" opacity=".55"/>
-  <path d="M150 182C150 128 184 100 222 100C260 100 294 128 294 182C294 234 268 268 222 274C176 268 150 234 150 182Z" fill="url(#face)"/>
+  <path d="M151 184C151 130 184 102 222 102C260 102 293 130 293 184C293 236 264 266 222 270C180 266 151 236 151 184Z" fill="url(#face)"/>
   <path d="M160 214C166 246 188 266 222 272" fill="none" stroke="#FFF1E6" stroke-width="2.6" opacity=".3" stroke-linecap="round"/>
   <path d="M284 210C280 242 260 262 232 270" fill="none" stroke="#9E6A52" stroke-width="5" opacity=".18" stroke-linecap="round" filter="url(#blur2)"/>
   <ellipse cx="200" cy="140" rx="22" ry="9" fill="#FFFFFF" opacity=".12"/>
@@ -111,27 +112,37 @@ avatar = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 440" role=
   <path d="M206 70C236 70 266 84 282 110M204 86C230 86 258 100 274 122M206 104C228 106 250 116 266 132" stroke="#5D4A52" stroke-width="1.3" opacity=".7" fill="none"/>
   <path d="M208 62C232 60 258 68 276 86" stroke="#FFFFFF" stroke-width="4" opacity=".16" fill="none" stroke-linecap="round"/>
   <path d="M156 178C150 188 148 200 151 212M291 176C297 186 298 198 295 210" stroke="{HAIR}" stroke-width="1.3" fill="none" opacity=".8"/>
-  <!-- cheeks, brows, smiling eyes -->
-  <ellipse cx="182" cy="224" rx="18" ry="10" fill="#F08A86" opacity=".32"/><ellipse cx="262" cy="224" rx="18" ry="10" fill="#F08A86" opacity=".32"/>
-  <ellipse cx="180" cy="214" rx="11" ry="6" fill="#FFFFFF" opacity=".17"/><ellipse cx="264" cy="214" rx="10" ry="5" fill="#FFFFFF" opacity=".12"/>
-  <path d="M170 162Q190 150 211 158" stroke="#22171A" stroke-width="5" fill="none" stroke-linecap="round"/>
-  <path d="M233 158Q254 150 274 162" stroke="#22171A" stroke-width="5" fill="none" stroke-linecap="round"/>
-  <path d="M180 183Q194 172 208 183Q194 186 180 183Z" fill="#FFFFFF"/><path d="M236 183Q250 172 264 183Q250 186 236 183Z" fill="#FFFFFF"/>
-  <circle cx="194.5" cy="180.5" r="5" fill="#3A2016"/><circle cx="249.5" cy="180.5" r="5" fill="#3A2016"/>
-  <circle cx="194.5" cy="181.5" r="2.6" fill="#0E0806"/><circle cx="249.5" cy="181.5" r="2.6" fill="#0E0806"/>
-  <circle cx="196.4" cy="179.6" r="1.5" fill="#FFFFFF"/><circle cx="251.4" cy="179.6" r="1.5" fill="#FFFFFF"/>
-  <path d="M178 182Q194 168 210 182M234 182Q250 168 266 182" stroke="#1E1210" stroke-width="2.6" fill="none" stroke-linecap="round"/>
-  <path d="M181 186Q194 191 207 186M237 186Q250 191 263 186" stroke="#A8694F" stroke-width="1.8" fill="none" opacity=".8" stroke-linecap="round"/>
-  <!-- nose -->
-  <path d="M222 192C220 204 216 212 217 218" stroke="#B57A60" stroke-width="2" fill="none" opacity=".55" stroke-linecap="round"/>
-  <ellipse cx="222" cy="219" rx="8.5" ry="6" fill="#F6D2B6" opacity=".55"/>
-  <path d="M210 221Q213 228 220 227Q222 228 224 227Q231 228 234 221" stroke="#A86E57" stroke-width="2" fill="none" stroke-linecap="round"/>
-  <!-- big happy smile with teeth -->
-  <path d="M192 240Q222 247 252 240Q248 265 222 267Q196 265 192 240Z" fill="#7A2230"/>
-  <path d="M195 241Q222 248 249 241L247 249Q222 256 197 249Z" fill="#FFFFFF"/>
-  <path d="M206 260Q222 254 238 260Q230 266 222 266Q214 266 206 260Z" fill="#E07A84"/>
-  <path d="M192 240Q222 247 252 240Q248 265 222 267Q196 265 192 240Z" fill="none" stroke="#B4505C" stroke-width="2.4" stroke-linejoin="round"/>
-  <path d="M188 236Q190 241 194 242M256 236Q254 241 250 242" stroke="#B5675E" stroke-width="1.6" fill="none" opacity=".7" stroke-linecap="round"/>
+  <!-- rosy cheeks, soft brows, big sparkly eyes -->
+  <ellipse cx="180" cy="223" rx="19" ry="11" fill="#FF8FA3" opacity=".42" filter="url(#blur2)"/>
+  <ellipse cx="264" cy="223" rx="19" ry="11" fill="#FF8FA3" opacity=".42" filter="url(#blur2)"/>
+  <ellipse cx="178" cy="214" rx="10" ry="5" fill="#FFFFFF" opacity=".2"/><ellipse cx="266" cy="214" rx="9" ry="4.5" fill="#FFFFFF" opacity=".14"/>
+  <path d="M175 161Q191 152 208 157" stroke="#2A1C1E" stroke-width="3.8" fill="none" stroke-linecap="round"/>
+  <path d="M236 157Q253 152 269 161" stroke="#2A1C1E" stroke-width="3.8" fill="none" stroke-linecap="round"/>
+  <g class="eyes">
+    <path d="M180 185Q194 169 208 185Q194 196 180 185Z" fill="#FFFFFF"/><path d="M236 185Q250 169 264 185Q250 196 236 185Z" fill="#FFFFFF"/>
+    <circle cx="194.5" cy="184.5" r="7.4" fill="url(#iris)"/><circle cx="249.5" cy="184.5" r="7.4" fill="url(#iris)"/>
+    <circle cx="194.5" cy="184.5" r="3.6" fill="#120806"/><circle cx="249.5" cy="184.5" r="3.6" fill="#120806"/>
+    <circle cx="197.6" cy="181" r="2.5" fill="#FFFFFF"/><circle cx="252.6" cy="181" r="2.5" fill="#FFFFFF"/>
+    <circle cx="192" cy="188" r="1.1" fill="#FFFFFF" opacity=".9"/><circle cx="247" cy="188" r="1.1" fill="#FFFFFF" opacity=".9"/>
+    <path d="M178.5 184Q194 166 209.5 183M234.5 183Q250 166 265.5 184" stroke="#160C0C" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+    <path d="M181 181L175 177M184 177L180 172M263 181L269 177M260 177L264 172" stroke="#160C0C" stroke-width="2" stroke-linecap="round"/>
+  </g>
+  <!-- small cute nose -->
+  <path d="M218 214Q222 219 227 214" stroke="#B57A60" stroke-width="2.1" fill="none" stroke-linecap="round"/>
+  <ellipse cx="223" cy="208" rx="3.5" ry="2.5" fill="#FFFFFF" opacity=".28"/>
+  <!-- sweet smile -->
+  <path d="M203 237Q222 244 241 237Q237 254 222 256Q207 254 203 237Z" fill="#8A2A3A"/>
+  <path d="M206 238Q222 244 238 238L236 243.5Q222 248 208 243.5Z" fill="#FFFFFF"/>
+  <path d="M211 250Q222 245 233 250Q228 255 222 255Q216 255 211 250Z" fill="#F28C9A"/>
+  <path d="M203 237Q222 244 241 237Q237 254 222 256Q207 254 203 237Z" fill="none" stroke="#C85C6C" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M199 235Q201 239 204 239.5M245 235Q243 239 240 239.5" stroke="#C07068" stroke-width="1.5" fill="none" opacity=".7" stroke-linecap="round"/>
+  <!-- a tiny butterfly hair clip -->
+  <g transform="translate(262 108) rotate(24) scale(.95)">
+    <path d="M0 0C-6-12-16-12-15-4C-14 2-6 3 0 0Z" fill="#FF6FAE"/><path d="M0 1C-5 8-11 10-11 5C-11 2-5 1 0 1Z" fill="#FFC83D"/>
+    <path d="M0 0C6-12 16-12 15-4C14 2 6 3 0 0Z" fill="#FF6FAE"/><path d="M0 1C5 8 11 10 11 5C11 2 5 1 0 1Z" fill="#FFC83D"/>
+    <rect x="-1.2" y="-6" width="2.4" height="12" rx="1.2" fill="#3A2A2E"/>
+    <circle cx="-8" cy="-5" r="1.6" fill="#FFFFFF" opacity=".8"/><circle cx="8" cy="-5" r="1.6" fill="#FFFFFF" opacity=".8"/>
+  </g>
 </g>
 
 <!-- a culture flask of pink medium, shedding tiny vesicles -->
