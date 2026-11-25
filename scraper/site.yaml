@@ -1,0 +1,10 @@
+# Chrysalis: who this site is for and which position types it keeps.
+title: Chrysalis
+person: Megha Pashupati
+first_name: Megha
+tagline: PhD positions, project jobs and internships, curated for Megha Pashupati
+cv: cv/megha.txt
+# Position types thrown away before ranking (she will hold an MSc, so postdoc and
+# faculty posts are out of reach). Allowed: phd, internship, fellowship, technician,
+# scientist, other, postdoc, faculty.
+drop_kinds: [postdoc, faculty]
