@@ -138,18 +138,23 @@ def run_sources(sources, prev_health, workers=8):
     prev = {h["name"]: h for h in prev_health or []}
     now = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
     raw, health = [], []
+    results = [None] * len(sources)
     with cf.ThreadPoolExecutor(max_workers=max(1, workers)) as ex:
-        for src, batch, status, error, secs in ex.map(run_one, sources):
-            p = prev.get(src.name, {})
-            ok = status in ("ok", "low")
-            health.append({
-                "name": src.name, "group": src.group, "type": src.kind, "status": status, "raw": len(batch),
-                "kept": 0, "carried": 0, "error": error, "seconds": secs,
-                "last_ok": now if ok else p.get("last_ok"),
-                "bad_since": None if ok else (p.get("bad_since") or C.today().isoformat()),
-                "previous": p.get("status"), "verified": src.verified, "verification": src.verification, "url": src.url,
-                "note": src.cfg.get("note") or ""})
-            raw.extend(batch)
+        futures = {ex.submit(run_one, s): i for i, s in enumerate(sources)}
+        for done, f in enumerate(cf.as_completed(futures), 1):          # progress, as each source finishes
+            results[futures[f]] = r = f.result()
+            print(f"  [{done:2d}/{len(sources)}] {r[2]:8s} {r[0].name} — {len(r[1])} found in {r[4]:.0f} s", flush=True)
+    for src, batch, status, error, secs in results:
+        p = prev.get(src.name, {})
+        ok = status in ("ok", "low")
+        health.append({
+            "name": src.name, "group": src.group, "type": src.kind, "status": status, "raw": len(batch),
+            "kept": 0, "carried": 0, "error": error, "seconds": secs,
+            "last_ok": now if ok else p.get("last_ok"),
+            "bad_since": None if ok else (p.get("bad_since") or C.today().isoformat()),
+            "previous": p.get("status"), "verified": src.verified, "verification": src.verification, "url": src.url,
+            "note": src.cfg.get("note") or ""})
+        raw.extend(batch)
     return raw, health
 
 
