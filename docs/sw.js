@@ -1,6 +1,6 @@
 /* Chrysalis service worker: network first, so the site is always fresh online, and the
    last good copy (page, styles, today's positions, fonts) is shown when there is no signal. */
-const CACHE = "chrysalis-v1";
+const CACHE = "chrysalis-v2";
 const CORE = ["./", "index.html", "style.css", "app.js", "score.js", "bg.js", "megha.svg", "icon.svg", "manifest.webmanifest"];
 
 self.addEventListener("install", (e) => {
